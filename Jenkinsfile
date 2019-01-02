@@ -44,7 +44,7 @@ node {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
 		
-		
+	
 		
 		stage('Quality Analysis') {
             withSonarQubeEnv('sonar') {
