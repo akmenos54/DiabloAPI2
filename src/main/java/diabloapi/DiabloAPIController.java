@@ -39,7 +39,7 @@ public class DiabloAPIController {
     public ResponseEntity greetingDelete(@PathVariable int id) {
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
     	    Item item = i.next();
-    	    if(item.getId() == id) Items_List.remove(id);
+    	    if(item.getId() == id) Items_List.remove(item);
     	}
     	return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -48,10 +48,13 @@ public class DiabloAPIController {
     @PostMapping("/DiabloAPI/post")
     public Item newItem(@RequestBody Item newItem) throws Exception {
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
-    	    Item item = i.next();
-    	    if(item.getId() == newItem.getId()) throw new Exception("Cet ID existe déjà dans la base");
-    	    else Items_List.add(newItem);
+    	    if(!i.hasNext()) {
+    	    	Item item = i.next();
+    	    	int lastID = item.getId();
+    	    	newItem.setId(lastID+1);
+    	    } 	    
     	}
+    	Items_List.add(newItem);
     	return newItem;
     }
 }

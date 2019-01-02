@@ -4,8 +4,7 @@ public class Item {
 	private int id, socket;
 	private String name,effect, type, classe;
 	
-	public Item(int id, String name, String effect, String type, String classe, int socket) {
-		this.id = id;
+	public Item(String name, String effect, String type, String classe, int socket) {
 		this.name = name;
 		this.effect = effect;
 		this.type = type;
