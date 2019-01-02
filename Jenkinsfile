@@ -44,9 +44,7 @@ node {
             archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true
         }
 		
-		stage('cleanup'){
-			cleanWs()
-		}
+		
 		
 		stage('Quality Analysis') {
             withSonarQubeEnv('sonar') {
