@@ -24,18 +24,18 @@ public class DiabloAPIController {
     private final AtomicLong counter = new AtomicLong();
     private ArrayList<Item> Items_List = Fonctions.init();
 
-    @GetMapping("/DiabloAPI")
+    @GetMapping("/DiabloAPI/GET")
     public ArrayList<Item> Item() {
         return Items_List;
     }
     
     
-    @GetMapping("/DiabloAPI/name/{name}")
+    @GetMapping("/DiabloAPI/NAME/{name}")
     public ArrayList<diabloapi.Item> diabloID(@PathVariable String name) {
     	return Fonctions.search(Items_List, name);
     }
     
-    @DeleteMapping("/DiabloAPI/:id")
+    @DeleteMapping("/DiabloAPI/DELETE/{id}")
     public ResponseEntity greetingDelete(@PathVariable int id) {
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
     	    Item item = i.next();
@@ -45,14 +45,14 @@ public class DiabloAPIController {
     }
 
     
-    @PostMapping("/DiabloAPI/post")
+    @PostMapping("/DiabloAPI/POST")
     public Item newItem(@RequestBody Item newItem) throws Exception {
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
-    	    if(!i.hasNext()) {
+    		if(!i.hasNext()) {
     	    	Item item = i.next();
     	    	int lastID = item.getId();
     	    	newItem.setId(lastID+1);
-    	    } 	    
+    	    }
     	}
     	Items_List.add(newItem);
     	return newItem;
