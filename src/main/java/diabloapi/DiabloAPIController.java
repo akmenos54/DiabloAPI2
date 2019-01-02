@@ -15,25 +15,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import diabloapi.Item;
+import diabloapi.Fonctions;
 
 @RestController
 public class DiabloAPIController {
     private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
-    //cette arraylist sert de BDD, a modifier en JSON
-    private ArrayList<Item> Items_List = new ArrayList();
+    private ArrayList<Item> Items_List = Fonctions.init();
 
     @GetMapping("/DiabloAPI")
     public ArrayList<Item> Item() {
         return Items_List;
     }
     
-    /*
-    @GetMapping("/DiabloAPI/:id")
-    public Item diabloID(@PathVariable int id) {
-        //to do 
-    	return null;
-    }*/
+    
+    @GetMapping("/DiabloAPI/name/{name}")
+    public ArrayList<diabloapi.Item> diabloID(@PathVariable String name) {
+    	return Fonctions.search(Items_List, name);
+    }
     
     @DeleteMapping("/DiabloAPI/:id")
     public ResponseEntity greetingDelete(@PathVariable int id) {
@@ -45,8 +44,8 @@ public class DiabloAPIController {
     @PostMapping("/DiabloAPI/post")
     public Item newItem(@RequestBody Item newItem) {
     	// Add to database
-    	newItem.setId(Items_List.size()+1);
-    	Items_List.add(newItem);
+    	//newItem.setId(Items_List.size()+1);
+    	//Items_List.add(newItem);
     	return newItem;
     }
 }
