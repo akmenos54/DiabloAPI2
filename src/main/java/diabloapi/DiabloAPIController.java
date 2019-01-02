@@ -46,10 +46,12 @@ public class DiabloAPIController {
 
     
     @PostMapping("/DiabloAPI/post")
-    public Item newItem(@RequestBody Item newItem) {
-    	// Add to database
-    	//newItem.setId(Items_List.size()+1);
-    	//Items_List.add(newItem);
+    public Item newItem(@RequestBody Item newItem) throws Exception {
+    	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
+    	    Item item = i.next();
+    	    if(item.getId() == newItem.getId()) throw new Exception("Cet ID existe déjà dans la base");
+    	    else Items_List.add(newItem);
+    	}
     	return newItem;
     }
 }
