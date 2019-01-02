@@ -1,6 +1,7 @@
 package diabloapi;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.http.HttpStatus;
@@ -36,7 +37,10 @@ public class DiabloAPIController {
     
     @DeleteMapping("/DiabloAPI/:id")
     public ResponseEntity greetingDelete(@PathVariable int id) {
-       // To do
+    	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
+    	    Item item = i.next();
+    	    if(item.getId() == id) Items_List.remove(id);
+    	}
     	return ResponseEntity.status(HttpStatus.OK).build();
     }
 

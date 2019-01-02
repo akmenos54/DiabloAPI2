@@ -1,11 +1,11 @@
 package diabloapi;
 
 public class Item {	
-	
+	private int id, socket;
 	private String name,effect, type, classe;
-	private int socket;
 	
-	public Item(String name, String effect, String type, String classe, int socket) {
+	public Item(int id, String name, String effect, String type, String classe, int socket) {
+		this.id = id;
 		this.name = name;
 		this.effect = effect;
 		this.type = type;
@@ -13,7 +13,13 @@ public class Item {
 		this.socket = socket;
 	}
 	
-	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
