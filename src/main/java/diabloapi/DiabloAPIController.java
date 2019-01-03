@@ -24,18 +24,18 @@ public class DiabloAPIController {
     private final AtomicLong counter = new AtomicLong();
     private ArrayList<Item> Items_List = Fonctions.init();
 
-    @GetMapping("/DiabloAPI/GET")
+    @GetMapping("/DiabloAPI")
     public ArrayList<Item> Item() {
         return Items_List;
     }
     
     
-    @GetMapping("/DiabloAPI/NAME/{name}")
+    @GetMapping("/DiabloAPI/name/{name}")
     public ArrayList<diabloapi.Item> diabloID(@PathVariable String name) {
     	return Fonctions.search(Items_List, name);
     }
     
-    @DeleteMapping("/DiabloAPI/DELETE/{id}")
+    @DeleteMapping("/DiabloAPI/:id")
     public ResponseEntity greetingDelete(@PathVariable int id) {
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
     	    Item item = i.next();
@@ -45,15 +45,23 @@ public class DiabloAPIController {
     }
 
     
-    @PostMapping("/DiabloAPI/POST")
+    @PostMapping("/DiabloAPI/post")
     public Item newItem(@RequestBody Item newItem) throws Exception {
+<<<<<<< HEAD
+    	if(!Items_List.isEmpty()) {
+    		Item item = Items_List.get(Items_List.size()-1);
+	    	int lastID = item.getId();
+	    	newItem.setId(lastID+1);
+=======
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
-    		if(!i.hasNext()) {
+    	    if(!i.hasNext()) {
     	    	Item item = i.next();
     	    	int lastID = item.getId();
     	    	newItem.setId(lastID+1);
-    	    }
+    	    } 	    
+>>>>>>> parent of 0d0ef5f... Changement des URLs
     	}
+    	
     	Items_List.add(newItem);
     	return newItem;
     }
