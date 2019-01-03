@@ -37,11 +37,22 @@ public class DiabloAPIController {
     
     @DeleteMapping("/DiabloAPI/DELETE/{id}")
     public ResponseEntity greetingDelete(@PathVariable int id) {
+    	int cpt = 0;
+    	boolean success = false;
+    	
     	for (Iterator<Item> i = Items_List.iterator(); i.hasNext();) {
-    	    Item item = i.next();
-    	    if(item.getId() == id) Items_List.remove(item);
+    	    if(cpt < Items_List.size() && success == false ) {
+    	    	Item item = Items_List.get(cpt);
+    	    	if(item.getId() == id) {
+    	    		Items_List.remove(item);
+    	    		success = true;
+    	    	}
+    	    	cpt++;
+    	    }
+    	    else break;
     	}
-    	return ResponseEntity.status(HttpStatus.OK).build();
+    	if (success == false) return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    	else return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     
