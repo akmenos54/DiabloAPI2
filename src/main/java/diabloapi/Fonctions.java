@@ -4,8 +4,19 @@ import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Fonctions.
+ */
 public class Fonctions {
 	
+	/**
+	 * Generate item ID.
+	 *
+	 * @param tempList the temp list
+	 * @param list the list
+	 * @return the array list
+	 */
 	public static ArrayList<Item> generateItemID(ArrayList<Item> tempList, ArrayList<Item> list) {
 		
 		if(list.isEmpty()) {
@@ -24,6 +35,12 @@ public class Fonctions {
 		
 		return list;
 	}
+	
+	/**
+	 * Inits the.
+	 *
+	 * @return the array list
+	 */
 	public static ArrayList<Item> init() {
 		
 		ArrayList<Item> tempList = new ArrayList<Item>();
@@ -47,6 +64,12 @@ public class Fonctions {
 		return list;
 	}
 	
+	/**
+	 * Convert str.
+	 *
+	 * @param str the str
+	 * @return the string
+	 */
 	public static String convertStr(String str) {
 		String str2 = str.trim();
 		str2 = str2.replaceAll("\\s+","");
@@ -57,6 +80,13 @@ public class Fonctions {
 		return convertedString;
 	}
 
+	/**
+	 * Search.
+	 *
+	 * @param base the base
+	 * @param str the str
+	 * @return the array list
+	 */
 	public static ArrayList<Item> search(ArrayList<Item> base, String str) {
 		
 		String searchStr = convertStr(str);
