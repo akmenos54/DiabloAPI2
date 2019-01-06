@@ -18,23 +18,46 @@ import org.springframework.web.bind.annotation.RestController;
 import diabloapi.Item;
 import diabloapi.Fonctions;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DiabloAPIController.
+ */
 @RestController
 public class DiabloAPIController {
-    private static final String template = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
+    
+    
+    
+    /** The Items list. */
     private ArrayList<Item> Items_List = Fonctions.init();
 
+    /**
+     * Item.
+     *
+     * @return the array list
+     */
     @GetMapping("/DiabloAPI/GET")
     public ArrayList<Item> Item() {
         return Items_List;
     }
     
     
+    /**
+     * Diablo ID.
+     *
+     * @param name the name
+     * @return the array list
+     */
     @GetMapping("/DiabloAPI/NAME/{name}")
     public ArrayList<diabloapi.Item> diabloID(@PathVariable String name) {
     	return Fonctions.search(Items_List, name);
     }
     
+    /**
+     * Greeting delete.
+     *
+     * @param id the id
+     * @return the response entity
+     */
     @DeleteMapping("/DiabloAPI/DELETE/{id}")
     public ResponseEntity greetingDelete(@PathVariable int id) {
     	int cpt = 0;
@@ -56,6 +79,13 @@ public class DiabloAPIController {
     }
 
     
+    /**
+     * New item.
+     *
+     * @param newItem the new item
+     * @return the item
+     * @throws Exception the exception
+     */
     @PostMapping("/DiabloAPI/POST")
     public Item newItem(@RequestBody Item newItem) throws Exception {
     	if(!Items_List.isEmpty()) {
