@@ -28,8 +28,6 @@ public class DiabloAPIController {
     /** The Constant template. */
     private static final String template = "Hello, %s!";
     
-    /** The counter. */
-    private final AtomicLong counter = new AtomicLong();
     
     /** The Items list. */
     private ArrayList<Item> Items_List = Fonctions.init();
