@@ -25,8 +25,6 @@ import diabloapi.Fonctions;
 @RestController
 public class DiabloAPIController {
     
-    /** The Constant template. */
-    private static final String template = "Hello, %s!";
     
     
     /** The Items list. */
